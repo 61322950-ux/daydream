@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>白日梦 · Daydream</title>
+  <meta name="description" content="把现实漏出来的三分钟，做成一场可以走进去的梦。白日梦引擎：第二人称、现在时、梦有自己的物理。" />
+  <meta name="theme-color" content="#141031" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="白日梦" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <canvas id="bg" aria-hidden="true"></canvas>
+  <div id="grain" aria-hidden="true"></div>
+
+  <header>
+    <button class="icon-btn" id="sndBtn" aria-label="环境音开关" title="环境音">♪</button>
+    <button class="icon-btn" id="journalBtn" aria-label="梦境档案" title="梦境档案">⟡</button>
+    <button class="icon-btn" id="gearBtn" aria-label="设置" title="设置">⚙</button>
+  </header>
+
+  <!-- 首页 -->
+  <main id="home">
+    <h1>白日梦</h1>
+    <p class="tagline">把现实漏出来的三分钟，做成一场可以走进去的梦</p>
+    <p id="seepHint"></p>
+    <input id="seedInput" type="text" placeholder="丢进一个词（可不填）" maxlength="30" autocomplete="off" />
+    <button class="btn primary" id="startBtn">入 梦</button>
+    <p id="history"></p>
+  </main>
+
+  <!-- 梦中 -->
+  <main id="dream" hidden>
+    <span id="badge">入梦中…</span>
+    <div id="beatText" aria-live="polite"></div>
+    <div id="controls">
+      <div id="lucidRow" hidden>
+        <input id="lucidInput" type="text" placeholder="在梦里，你想干什么？" maxlength="40" autocomplete="off" />
+        <button class="mini-btn warm" id="lucidGo">当真</button>
+      </div>
+      <div class="row">
+        <button class="mini-btn" id="lucidBtn">转清醒</button>
+        <button class="btn" id="flowBtn">顺流</button>
+        <button class="mini-btn" id="wakeBtn">醒来</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- 醒来 -->
+  <main id="wake" hidden>
+    <p class="sound" id="wakeSoundLine"></p>
+    <h2 id="wakeTitle"></h2>
+    <p class="artifact" id="artifactText"></p>
+    <p class="saved">已存入梦境档案</p>
+    <div class="row">
+      <button class="btn" id="againBtn">再做一场</button>
+      <button class="mini-btn" id="cardBtn">存一张梦卡</button>
+    </div>
+  </main>
+
+  <!-- 梦境档案 -->
+  <aside class="drawer" id="journal" aria-label="梦境档案">
+    <h2>梦境档案 <button class="icon-btn" id="journalClose" aria-label="关闭">✕</button></h2>
+    <div id="journalList"></div>
+    <button class="danger" id="journalClear">清空档案</button>
+  </aside>
+
+  <!-- 设置 -->
+  <aside class="drawer" id="settings" aria-label="设置">
+    <h2>设置 <button class="icon-btn" id="settingsClose" aria-label="关闭">✕</button></h2>
+    <div class="toggle-row">
+      <input type="checkbox" id="aiOn" />
+      <label for="aiOn">AI 入梦（可选增强）</label>
+    </div>
+    <div class="field">
+      <label for="aiKey">API Key（仅存在你自己的设备上）</label>
+      <input id="aiKey" type="password" placeholder="sk-…" autocomplete="off" />
+    </div>
+    <div class="field">
+      <label for="aiModel">模型（默认 glm-4-flash）</label>
+      <input id="aiModel" type="text" placeholder="glm-4-flash" autocomplete="off" />
+    </div>
+    <div class="field">
+      <label for="aiBase">接口地址（默认智谱开放平台）</label>
+      <input id="aiBase" type="text" placeholder="https://open.bigmodel.cn/api/paas/v4" autocomplete="off" />
+    </div>
+    <p class="ai-note">不开 AI 也能完整体验：内置的本地梦境引擎全程离线可用。开启后由你选择的大模型按《白日梦引擎》的规则造梦，Key 只保存在本机、只发往你填写的接口。</p>
+  </aside>
+
+  <div id="toast" role="status"></div>
+
+  <script src="./engine.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
