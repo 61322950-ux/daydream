@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>白日梦 · Daydream</title>
+  <meta name="description" content="把现实漏出来的三分钟，做成一场可以走进去的梦。白日梦引擎：第二人称、现在时、梦有自己的物理。" />
+  <meta name="theme-color" content="#141031" />
+  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwIiB5MT0iMCIgeDI9IjAuNCIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMyNDFhNGYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIwLjU1IiBzdG9wLWNvbG9yPSIjMWExNDQwIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzZlNGE1NiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxyYWRpYWxHcmFkaWVudCBpZD0iZ2xvdyIgY3g9IjAuNjIiIGN5PSIwLjM0IiByPSIwLjUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNjOThhNmIiIHN0b3Atb3BhY2l0eT0iMC41NSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNjOThhNmIiIHN0b3Atb3BhY2l0eT0iMCIvPgogICAgPC9yYWRpYWxHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIGZpbGw9InVybCgjYmcpIi8+CiAgPHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIGZpbGw9InVybCgjZ2xvdykiLz4KICA8ZyBmaWxsPSIjZmZmIj4KICAgIDxjaXJjbGUgY3g9Ijg2IiBjeT0iOTYiIHI9IjUiIG9wYWNpdHk9IjAuOSIvPgogICAgPGNpcmNsZSBjeD0iMTUwIiBjeT0iNTIiIHI9IjMiIG9wYWNpdHk9IjAuNiIvPgogICAgPGNpcmNsZSBjeD0iNDIwIiBjeT0iMTIwIiByPSI0IiBvcGFjaXR5PSIwLjgiLz4KICAgIDxjaXJjbGUgY3g9IjM4MCIgY3k9IjYwIiByPSIyLjUiIG9wYWNpdHk9IjAuNSIvPgogICAgPGNpcmNsZSBjeD0iNDYwIiBjeT0iMjEwIiByPSIzIiBvcGFjaXR5PSIwLjYiLz4KICA8L2c+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjU2IDIzNikiPgogICAgPGNpcmNsZSByPSI4NiIgZmlsbD0iI2YzZWNkOSIgb3BhY2l0eT0iMC45NyIvPgogICAgPGNpcmNsZSBjeD0iMzQiIGN5PSItMTQiIHI9Ijc2IiBmaWxsPSJ1cmwoI2JnKSIvPgogIDwvZz4KICA8ZyBmaWxsPSIjY2RiZmU4IiBvcGFjaXR5PSIwLjkyIj4KICAgIDxlbGxpcHNlIGN4PSIxOTYiIGN5PSIzOTIiIHJ4PSI4NiIgcnk9IjM0Ii8+CiAgICA8ZWxsaXBzZSBjeD0iMjcyIiBjeT0iMzY4IiByeD0iNjQiIHJ5PSIzMCIvPgogICAgPGVsbGlwc2UgY3g9IjEzMCIgY3k9IjM3NiIgcng9IjQ2IiByeT0iMjQiLz4KICA8L2c+Cjwvc3ZnPgo=" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="白日梦" />
+  <style>
+/* 白日梦 —— 深色梦面、衬线排版、玻璃层 */
+:root {
+  --bg: #141031;
+  --text: #e9ecff;
+  --muted: rgba(233, 236, 255, 0.55);
+  --glass: rgba(255, 255, 255, 0.06);
+  --line: rgba(255, 255, 255, 0.14);
+  --accent: #c98a6b;
+  --serif: "Songti SC", "Noto Serif SC", "STSong", "SimSun", serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--serif);
+  overflow: hidden;
+  transition: background 1.2s ease, color 1.2s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.jolt main { animation: jolt 1.5s ease; }
+@keyframes jolt {
+  0% { filter: hue-rotate(0); } 30% { filter: hue-rotate(-40deg); }
+  60% { filter: hue-rotate(25deg); } 100% { filter: hue-rotate(0); }
+}
+
+#bg { position: fixed; inset: 0; z-index: -2; }
+
+#grain {
+  position: fixed; inset: -50%; z-index: -1; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  animation: grain 9s steps(6) infinite;
+}
+@keyframes grain {
+  0%,100% { transform: translate(0,0); } 20% { transform: translate(-3%,2%); }
+  40% { transform: translate(2%,-3%); } 60% { transform: translate(-2%,-2%); } 80% { transform: translate(3%,3%); }
+}
+
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: 3; pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.5) 100%);
+}
+
+/* ---------- 顶栏 ---------- */
+header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+  display: flex; justify-content: flex-end; gap: 6px;
+  padding: calc(env(safe-area-inset-top) + 14px) 18px 0;
+}
+.icon-btn {
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid var(--line); background: var(--glass);
+  color: var(--muted); font-size: 17px; cursor: pointer;
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  transition: color .3s, border-color .3s, transform .2s;
+  display: grid; place-items: center;
+}
+.icon-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.3); }
+.icon-btn:active { transform: scale(0.92); }
+.icon-btn.on { color: var(--accent); border-color: var(--accent); }
+
+/* ---------- 首页 ---------- */
+main {
+  position: relative; z-index: 5;
+  height: 100dvh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 24px; text-align: center;
+}
+
+#home h1 {
+  font-size: clamp(52px, 11vw, 96px);
+  font-weight: 600; letter-spacing: 0.18em; text-indent: 0.18em;
+  text-shadow: 0 0 60px rgba(160, 140, 255, 0.45);
+}
+#home .tagline { margin-top: 18px; font-size: 16px; color: var(--muted); letter-spacing: 0.12em; }
+#seepHint { margin-top: 40px; font-size: 14px; color: var(--muted); opacity: 0.9; max-width: 30em; line-height: 1.8; }
+
+#seedInput {
+  margin-top: 26px; width: min(82vw, 340px);
+  background: transparent; border: none; border-bottom: 1px solid var(--line);
+  color: var(--text); font-family: var(--serif); font-size: 17px;
+  padding: 10px 4px; text-align: center; letter-spacing: 0.06em; outline: none;
+  transition: border-color .3s;
+}
+#seedInput::placeholder { color: rgba(233,236,255,0.3); }
+#seedInput:focus { border-color: rgba(255,255,255,0.4); }
+
+.btn {
+  margin-top: 30px; padding: 13px 44px; border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.35); background: var(--glass);
+  color: var(--text); font-family: var(--serif); font-size: 17px; letter-spacing: 0.3em; text-indent: 0.3em;
+  cursor: pointer; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  transition: background .3s, transform .2s, box-shadow .3s, border-color .3s;
+}
+.btn:hover { background: rgba(255,255,255,0.12); box-shadow: 0 0 40px rgba(160,140,255,0.25); }
+.btn:active { transform: scale(0.96); }
+.btn.primary { border-color: var(--accent); box-shadow: 0 0 30px rgba(201,138,107,0.18); }
+
+#history { margin-top: 34px; font-size: 13px; color: var(--muted); opacity: 0.75; }
+
+/* ---------- 梦中 ---------- */
+#dream { justify-content: flex-start; padding-top: 14dvh; text-align: left; }
+#badge {
+  font-size: 12px; color: var(--muted); letter-spacing: 0.2em;
+  border: 1px solid var(--line); border-radius: 999px; padding: 5px 14px;
+  align-self: center; backdrop-filter: blur(8px);
+}
+#beatText {
+  max-width: 34em; margin: 6dvh auto 0;
+  font-size: clamp(17px, 2.4vw, 21px); line-height: 2.2; letter-spacing: 0.04em;
+}
+#beatText .line { display: block; opacity: 0; transform: translateY(14px); filter: blur(4px); transition: opacity 1.4s ease, transform 1.4s ease, filter 1.4s ease; }
+#beatText .line.in { opacity: 1; transform: none; filter: none; }
+
+#controls { margin-top: auto; padding-bottom: calc(env(safe-area-inset-bottom) + 5dvh); display: flex; flex-direction: column; align-items: center; gap: 14px; width: 100%; }
+#controls .row { display: flex; gap: 12px; }
+.mini-btn {
+  padding: 9px 26px; border-radius: 999px; border: 1px solid var(--line);
+  background: transparent; color: var(--muted); font-family: var(--serif);
+  font-size: 14px; letter-spacing: 0.2em; text-indent: 0.2em; cursor: pointer;
+  transition: color .3s, border-color .3s;
+}
+.mini-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.35); }
+#flowBtn { padding: 13px 52px; font-size: 16px; }
+.mini-btn.warm { border-color: rgba(201,138,107,0.5); color: #d9a98c; }
+.mini-btn.warm:hover { color: var(--accent); border-color: var(--accent); }
+
+#lucidRow {
+  display: flex; gap: 10px; align-items: center;
+  width: min(86vw, 460px);
+}
+#lucidRow[hidden] { display: none; }
+#lucidInput {
+  flex: 1; background: var(--glass); border: 1px solid var(--line);
+  border-radius: 999px; padding: 11px 20px; color: var(--text);
+  font-family: var(--serif); font-size: 15px; outline: none;
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+}
+#lucidInput:focus { border-color: var(--accent); }
+#lucidGo { margin-top: 0; }
+
+/* ---------- 醒来 ---------- */
+#wake { justify-content: center; }
+#wake .sound { font-size: 14px; color: var(--muted); letter-spacing: 0.1em; }
+#wakeTitle { margin-top: 26px; font-size: clamp(30px, 6vw, 44px); letter-spacing: 0.14em; }
+#wakeTitle::after { content: ""; display: block; width: 40px; height: 1px; background: var(--accent); margin: 22px auto 0; }
+#wake .artifact {
+  margin-top: 34px; max-width: 26em; font-size: clamp(17px, 2.6vw, 21px);
+  line-height: 2; padding: 26px 30px; border: 1px solid var(--line); border-radius: 22px;
+  background: var(--glass); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+}
+#wake .saved { margin-top: 18px; font-size: 12px; color: var(--muted); letter-spacing: 0.18em; }
+#wake .row { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+#wake .btn { margin-top: 34px; padding: 12px 34px; font-size: 15px; }
+#wake .mini-btn { margin-top: 34px; padding: 12px 28px; }
+
+/* ---------- 抽屉（档案 / 设置） ---------- */
+.drawer {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 20;
+  width: min(92vw, 420px);
+  background: rgba(14, 11, 34, 0.82);
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  border-left: 1px solid var(--line);
+  transform: translateX(102%); transition: transform .45s cubic-bezier(.2,.9,.25,1);
+  display: flex; flex-direction: column;
+  padding: calc(env(safe-area-inset-top) + 20px) 24px calc(env(safe-area-inset-bottom) + 24px);
+}
+.drawer.open { transform: none; }
+.drawer h2 { font-size: 18px; letter-spacing: 0.3em; font-weight: 600; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+.drawer h2 .icon-btn { width: 34px; height: 34px; font-size: 14px; }
+#journalList { overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 14px; }
+.j-item { border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px; }
+.j-title { font-size: 17px; display: flex; align-items: center; gap: 10px; }
+.j-mood { font-size: 11px; color: var(--accent); border: 1px solid rgba(201,138,107,0.4); border-radius: 999px; padding: 2px 10px; letter-spacing: 0.1em; }
+.j-meta { font-size: 12px; color: var(--muted); margin-top: 6px; }
+.chip { display: inline-block; font-size: 12px; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 3px 12px; margin: 8px 6px 0 0; }
+.j-hook { margin-top: 10px; font-size: 13px; color: var(--muted); font-style: italic; }
+.empty { color: var(--muted); font-size: 14px; text-align: center; margin-top: 40px; }
+.danger { border: none; background: none; color: var(--muted); font-family: var(--serif); font-size: 13px; cursor: pointer; margin-top: 14px; text-decoration: underline dotted; }
+.danger:hover { color: #c25e7a; }
+
+.field { margin: 14px 0; }
+.field label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 7px; letter-spacing: 0.1em; }
+.field input {
+  width: 100%; background: var(--glass); border: 1px solid var(--line);
+  border-radius: 12px; padding: 11px 14px; color: var(--text);
+  font-family: var(--serif); font-size: 15px; outline: none;
+}
+.field input:focus { border-color: var(--accent); }
+.toggle-row { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+.toggle-row label { font-size: 15px; }
+.toggle-row input { width: 18px; height: 18px; accent-color: var(--accent); }
+.ai-note { font-size: 12px; color: var(--muted); line-height: 1.9; margin-top: 16px; }
+
+/* ---------- Toast ---------- */
+#toast {
+  position: fixed; left: 50%; bottom: calc(env(safe-area-inset-bottom) + 28px);
+  transform: translate(-50%, 20px); z-index: 30;
+  background: rgba(20, 16, 49, 0.9); border: 1px solid var(--line);
+  border-radius: 999px; padding: 10px 24px; font-size: 13px; color: var(--text);
+  opacity: 0; pointer-events: none; transition: opacity .4s, transform .4s;
+  backdrop-filter: blur(12px);
+}
+#toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+[hidden] { display: none !important; }
+
+::selection { background: rgba(201, 138, 107, 0.35); }
+
+</style>
+</head>
+<body>
+  <canvas id="bg" aria-hidden="true"></canvas>
+  <div id="grain" aria-hidden="true"></div>
+
+  <header>
+    <button class="icon-btn" id="sndBtn" aria-label="环境音开关" title="环境音">♪</button>
+    <button class="icon-btn" id="journalBtn" aria-label="梦境档案" title="梦境档案">⟡</button>
+    <button class="icon-btn" id="gearBtn" aria-label="设置" title="设置">⚙</button>
+  </header>
+
+  <!-- 首页 -->
+  <main id="home">
+    <h1>白日梦</h1>
+    <p class="tagline">把现实漏出来的三分钟，做成一场可以走进去的梦</p>
+    <p id="seepHint"></p>
+    <input id="seedInput" type="text" placeholder="丢进一个词（可不填）" maxlength="30" autocomplete="off" />
+    <button class="btn primary" id="startBtn">入 梦</button>
+    <p id="history"></p>
+  </main>
+
+  <!-- 梦中 -->
+  <main id="dream" hidden>
+    <span id="badge">入梦中…</span>
+    <div id="beatText" aria-live="polite"></div>
+    <div id="controls">
+      <div id="lucidRow" hidden>
+        <input id="lucidInput" type="text" placeholder="在梦里，你想干什么？" maxlength="40" autocomplete="off" />
+        <button class="mini-btn warm" id="lucidGo">当真</button>
+      </div>
+      <div class="row">
+        <button class="mini-btn" id="lucidBtn">转清醒</button>
+        <button class="btn" id="flowBtn">顺流</button>
+        <button class="mini-btn" id="wakeBtn">醒来</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- 醒来 -->
+  <main id="wake" hidden>
+    <p class="sound" id="wakeSoundLine"></p>
+    <h2 id="wakeTitle"></h2>
+    <p class="artifact" id="artifactText"></p>
+    <p class="saved">已存入梦境档案</p>
+    <div class="row">
+      <button class="btn" id="againBtn">再做一场</button>
+      <button class="mini-btn" id="cardBtn">存一张梦卡</button>
+    </div>
+  </main>
+
+  <!-- 梦境档案 -->
+  <aside class="drawer" id="journal" aria-label="梦境档案">
+    <h2>梦境档案 <button class="icon-btn" id="journalClose" aria-label="关闭">✕</button></h2>
+    <div id="journalList"></div>
+    <button class="danger" id="journalClear">清空档案</button>
+  </aside>
+
+  <!-- 设置 -->
+  <aside class="drawer" id="settings" aria-label="设置">
+    <h2>设置 <button class="icon-btn" id="settingsClose" aria-label="关闭">✕</button></h2>
+    <div class="toggle-row">
+      <input type="checkbox" id="aiOn" />
+      <label for="aiOn">AI 入梦（可选增强）</label>
+    </div>
+    <div class="field">
+      <label for="aiKey">API Key（仅存在你自己的设备上）</label>
+      <input id="aiKey" type="password" placeholder="sk-…" autocomplete="off" />
+    </div>
+    <div class="field">
+      <label for="aiModel">模型（默认 glm-4-flash）</label>
+      <input id="aiModel" type="text" placeholder="glm-4-flash" autocomplete="off" />
+    </div>
+    <div class="field">
+      <label for="aiBase">接口地址（默认智谱开放平台）</label>
+      <input id="aiBase" type="text" placeholder="https://open.bigmodel.cn/api/paas/v4" autocomplete="off" />
+    </div>
+    <p class="ai-note">不开 AI 也能完整体验：内置的本地梦境引擎全程离线可用。开启后由你选择的大模型按《白日梦引擎》的规则造梦，Key 只保存在本机、只发往你填写的接口。</p>
+  </aside>
+
+  <div id="toast" role="status"></div>
+
+  <script>
+/* 白日梦引擎 —— 本地梦境生成器
+   规则：第二人称、现在时、场景漂移、每拍至多一件不可能的事且人人当它平常。
+   全部素材离线内置；AI 模式只是可选增强，不接也能完整体验。 */
+
+const Engine = (() => {
+  'use strict';
+
+  // ---------- 随机工具 ----------
+  const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
+  const chance = (p) => Math.random() < p;
+
+  // ---------- 气压与色盘 ----------
+  const PALETTES = {
+    温柔: { bg: '#221a3f', blobs: ['#6b5ca5', '#c98a6b', '#8a6bb3', '#b98a9e'], text: '#efe9ff' },
+    漂流: { bg: '#12102e', blobs: ['#4b5bab', '#7a6bb3', '#3b8686', '#6b4b8a'], text: '#e9ecff' },
+    荒诞: { bg: '#1c1030', blobs: ['#c25e7a', '#5e79c2', '#d9a441', '#7a4b9e'], text: '#f5eaff' },
+    循环: { bg: '#0e1a26', blobs: ['#2e6b7a', '#3b5bab', '#5a4b9e', '#3b8a7a'], text: '#e6f4ff' },
+    清醒: { bg: '#191238', blobs: ['#8a5cb8', '#c25e9e', '#5e79c2', '#d9a441'], text: '#f7f0ff' },
+  };
+
+  // ---------- 现实渗入 ----------
+  const WEEK = ['日', '一', '二', '三', '四', '五', '六'];
+  const BUCKET_TEXT = { deep: '凌晨', dawn: '清晨', morning: '上午', noon: '中午', afternoon: '下午', dusk: '黄昏', night: '夜里' };
+
+  function seepNow() {
+    const d = new Date();
+    const h = d.getHours();
+    const bucket = h < 5 ? 'deep' : h < 8 ? 'dawn' : h < 11 ? 'morning' : h < 14 ? 'noon' : h < 18 ? 'afternoon' : h < 20 ? 'dusk' : 'night';
+    return {
+      bucket,
+      bucketText: BUCKET_TEXT[bucket],
+      h,
+      minText: d.getMinutes() < 10 ? '0' + d.getMinutes() : '' + d.getMinutes(),
+      week: WEEK[d.getDay()],
+    };
+  }
+
+  function moodFor(seep, seed, journal) {
+    if (seed && /困|累|难过|烦|压力|睡不着|失眠|emo|丧|崩溃|焦虑/.test(seed)) return '温柔';
+    // 上一场是循环梦，梦有时会想在同一个地方再错一次
+    if (journal && journal[0] && journal[0].mood === '循环' && chance(0.3)) return '循环';
+    const table = {
+      deep: ['温柔', '漂流', '漂流', '荒诞'],
+      dawn: ['漂流', '温柔'],
+      morning: ['漂流', '荒诞'],
+      noon: ['漂流', '荒诞'],
+      afternoon: ['漂流', '漂流', '荒诞'],
+      dusk: ['温柔', '漂流'],
+      night: ['温柔', '漂流', '漂流', '循环'],
+    };
+    return pick(table[seep.bucket] || ['漂流']);
+  }
+
+  const OPENERS = {
+    deep: (s) => `现在是${s.bucketText}${s.h}点${s.minText}分，星期${s.week}，全世界最软的时间。你还没睡，但"醒着"这个词已经开始不太好用了。`,
+    dawn: (s) => `${s.bucketText}${s.h}点${s.minText}分，天在亮和没亮之间。这个时段存在的东西不多，你算一个。`,
+    morning: (s) => `${s.bucketText}${s.h}点${s.minText}分，星期${s.week}。今天已经开始了一阵子，但还没开始认真。`,
+    noon: (s) => `${s.bucketText}${s.h}点${s.minText}分。太阳在头顶站得笔直，但影子们都有点困。`,
+    afternoon: (s) => `${s.bucketText}${s.h}点${s.minText}分，星期${s.week}。下午的这半个小时本来就归你，只是你平时忘了来领。`,
+    dusk: (s) => `${s.bucketText}${s.h}点${s.minText}分，天正在关灯，但没关死。`,
+    night: (s) => `${s.bucketText}${s.h}点${s.minText}分，星期${s.week}。夜刚起头，事情都还来得及不作数。`,
+  };
+
+  // ---------- 素材池 ----------
+  const SCENES = [
+    { short: '末班火车', img: '玻璃瓶里的报站声',
+      text: ['你站在一节绿皮车厢的连接处，灯是旧的那种黄。窗外的夜往后退，退得不紧不慢，像有人在替你翻一本读过一半的书。',
+             '车厢里很空，但每个座位上都搭着一件像是有人刚刚才离开的外套。广播报站，报的站名一个都不认识，但听着都不错。'],
+      anchors: ['风从门缝里进来，带着铁轨和旧报纸的味道', '报站声在空车厢里荡了一下才落地'] },
+    { short: '深夜便利店', img: '给过期时间挠头的店员',
+      text: ['便利店的冷柜嗡嗡响着，把这一小块夜照得很白。关东煮的雾往上走，走到一半就懒得走了，停在半空。',
+             '店员趴在柜台上看一本翻倒的杂志，货架深处传来讲价的录音，用的是去年冬天的声音。'],
+      anchors: ['冷空气贴着手背，凉得很客气', '冰柜的嗡嗡声像一支没唱完的歌'] },
+    { short: '闭馆的水族馆', img: '在加班的鲨鱼',
+      text: ['闭馆后的水族馆只剩蓝光，一整面一整面的蓝，像天黑透之后天空自己留着的那部分。鱼群慢慢游，游得像在散步。',
+             '玻璃另一面有什么在呼吸，不是鱼——鱼不这么呼吸。你凑近看，它也凑近看，然后很客气地先退开了。'],
+      anchors: ['水汽贴着脸，咸得很轻', '远处有钟声泡在水里传过来，是钝的'] },
+    { short: '云的候机厅', img: '以心情命名的登机口',
+      text: ['候机厅的椅子软得恰到好处，像专门量过你今天有多累。登机口的牌子不写地名，写心情——这一班飞"释然"，下一班飞"小时候的夏天"。',
+             '广播不报时间，只报云况：今晚多云转散，散了就不补。有云在窗外退房，行李很少。'],
+      anchors: ['空气里有很淡的、刚下过雨的跑道味', '广播的声音像从玻璃瓶里倒出来的'] },
+    { short: '屋顶泳池', img: '往侧面延伸的扶梯',
+      text: ['屋顶泳池的水面很平，平得像有人刚熨过。水面映着别人家的电视，一闪一闪，演到哪算哪。',
+             '扶梯从水里伸出来，但不往上，往侧面——侧面有一小片天，踩上去是实的。'],
+      anchors: ['氯水味混着夜风，是夏天快结束的味道', '水底的灯偶尔亮一格，像谁在数数'] },
+    { short: '旧教室', img: '记住了所有人的黑板',
+      text: ['旧教室的粉笔灰在光里排队，排得很整齐，队尾排到了窗户外面。课桌按年份摆，越往里越旧。',
+             '黑板擦得很干净，但凑近了看，擦掉的字都还在，一层一层，像树的年轮。'],
+      anchors: ['粉笔灰的味道，干燥又安静', '吊扇转得很慢，慢得像在犹豫'] },
+    { short: '末班站台', img: '跟你挥手但不是告别的广告牌',
+      text: ['末班车刚走，站台上还留着它的风。广告牌里的人朝你挥手，不是告别，更像"你也还没走啊"。',
+             '广播只剩气声，长椅是温的，像刚有人替你坐热。'],
+      anchors: ['轨道那边传来很远的电流声', '有股雨下到一半的气味'] },
+    { short: '洗衣店', img: '烘干机里晾着的云',
+      text: ['洗衣店的滚筒把星期转软。墙上贴着价目表，最后一条写着"心事另计，不贵"。',
+             '烘干机滚着，滚出一小朵一小朵的云，攒在机器顶上，是别人忘拿的。'],
+      anchors: ['洗衣粉的香，干净得有点不真实', '滚筒的声音很稳，像一列不会晚点的火车'] },
+    { short: '夜航缆车', img: '变成电路板的城市',
+      text: ['缆车往山里走，脚下的城市慢慢变成一块通电的电路板，哪里亮着，哪里就在醒着。',
+             '车厢里只有你和一盏小灯。缆绳在头顶轻轻响，一下，一下，像有人在很远的地方数你的心跳。'],
+      anchors: ['钢缆的味道混着松林的风', '车厢轻轻晃，晃得刚好能原谅今天'] },
+    { short: '图书馆B区', img: '在找自己的索引卡',
+      text: ['B区没有人来，书架之间宽得能散步。书页偶尔自己翻一页，不是风，是有的书想跳到好看的段落。',
+             '索引卡的抽屉半开着，卡片一张一张爬出来，在桌上排队，找自己原来的位置。'],
+      anchors: ['旧纸页的味道，像时间本来的气味', '顶灯有一点点电流声，像灯在自言自语'] },
+    { short: '灯塔', img: '顺时针往下的楼梯',
+      text: ['灯塔的光每十二秒扫一次海，扫过的时候，整间屋子跟着亮一下，像有人帮你翻页。海在下面很安静，安静得能听见它换气。',
+             '楼梯往下绕，顺时针，越走越靠近海面，但始终差一层——这层差的一层，谁也不着急。'],
+      anchors: ['咸腥的风，凉得很提神', '墙上挂着旧航图，标着一个明天才存在的暗礁'] },
+    { short: '自动贩卖机', img: '掉下来是温的罐子',
+      text: ['贩卖机的灯箱照亮一小块夜，亮得像一个正经的建议。里面摆的饮料名字都很陌生，但每一样看着都想买。',
+             '你投了一枚不知道哪来的硬币，罐子掉下来，是温的——像有人刚从口袋里拿出来递给你。'],
+      anchors: ['灯箱的电流声嗡嗡的，很尽忠职守', '夜风穿过货架间，有一点铁锈的甜味'] },
+  ];
+
+  const IMPOSSIBLES = [
+    { t: '云在窗外退房，一层楼从另一层里慢慢抽出来，像抽屉。没人觉得这有什么。', obj: '退房的云', img: '退房的云' },
+    { t: '站牌上的字游了一圈，回到原位，装作没动过。', obj: '游动的站牌', img: '游动的站牌' },
+    { t: '一群鱼从空气里过马路。等红灯的是你。', obj: '过马路的鱼', img: '过马路的鱼' },
+    { t: '雨只下一半，另一半停在半空，等一个说法。', obj: '下了一半的雨', img: '下了一半的雨' },
+    { t: '影子先回家了，门上留了字条：别锁门。', obj: '先回家的影子', img: '先回家的影子' },
+    { t: '月亮插着充电线，电量84%，充得很慢，但很稳。', obj: '充电的月亮', img: '充电的月亮' },
+    { t: '电梯的按钮只有两个字：暂时。全楼的人都用它，都很满意。', obj: '写着暂时的电梯', img: '写着暂时的电梯' },
+    { t: '楼梯多出一层。谁都不数它，它也就不吵。', obj: '多出的一层楼梯', img: '多出的一层楼梯' },
+    { t: '街角的电话亭在响。接起来，是明天的你，说了句"没事"，就挂了。', obj: '响着的电话亭', img: '响着的电话亭' },
+    { t: '雪落下来是暖的，像有人提前焐过一整个冬天。', obj: '焐过的雪', img: '焐过的雪' },
+    { t: '红绿灯这会儿不负责车，只负责心情。现在是绿的，说明大家都还行。', obj: '只管心情的红绿灯', img: '只管心情的红绿灯' },
+    { t: '海在很远的地方翻页，翻到好看的地方，浪就大一点。', obj: '翻页的海', img: '翻页的海' },
+  ];
+
+  const ANCHORS = [
+    '出租车里有股雨下到一半的气味', '空气里有刚洗过的棉布味', '远处有人在洗牌，声音很轻',
+    '有股很淡的栀子花香，找不到来源', '台阶被晒了一下午，还是温的', '潮气贴着脚踝，凉得很客气',
+    '咖啡凉了，但凉得很值得', '风里有一点别的季节的味道', '风从门缝里进来，带着旧纸箱的味道',
+  ];
+
+  const CHARACTERS = [
+    '一个抱着枕头路过的人跟你点头："你也先住着？"',
+    '穿旧校服的售票员在补票。她记得每个人都欠一张票钱，但从来不要。',
+    '天台上有位阿姨在晾星星，收衣服的时候顺便收月亮。',
+    '一个收集站名的孩子，本子上全是没去过的地方。',
+    '前台坐着一只猫，工牌上写着"还没想好"，业务很熟练。',
+    '大爷在遛一条不存在的狗。狗很配合，你也很配合。',
+    '值夜班的猫用你的小名喊你。你想不起来自己有过这个小名，但答应了。',
+    '队伍最后有个人永远轮不到。他不急，他说排着本身就挺好。',
+  ];
+
+  const THRESHOLDS = [
+    '屏幕的光忽然变得很重，顺着桌沿往下淌，淌到地上就成了一层浅浅的水。你踩进去，水是暖的，带着充电器微微发热的那种暖。',
+    '楼梯数着数着多出一层。你想着回头再算，脚已经先下去了。',
+    '电梯来了，按钮里多了一个没见过的字。你按下去，电梯叹了口气开始往下走——不像下楼，像下潜。',
+    '公交坐过了一站。你想坐回来，车就倒着开了回来，全车没有一个人觉得奇怪。',
+    '泡面等开的三分钟里你走了神。走进去的时候，汤还是烫的。',
+    '键盘的缝隙里透出光。你把F键抠起来，里面是一段往下的楼梯。',
+    '窗帘的褶皱里夹着一小片没醒的夜。你把它展开铺在地上，走了进去。',
+    '手机屏幕上，时间开头那个数字看久了变成一扇门。你推开它，门后面是走廊。',
+  ];
+
+  const SEED_LEADS = [
+    '你想着「{s}」，想着想着——',
+    '你把「{s}」轻轻放在一边，先去别处看看——',
+    '「{s}」在你脑子里晃了一下，晃出一条缝——',
+  ];
+
+  const SEED_WEAVES = [
+    '在这里，「{s}」不用解释，大家都有。',
+    '你把「{s}」放进外套口袋。这里替你保管，不问来路。',
+    '「{s}」在这里长出了一层新意思，不大声，但你看得见。',
+  ];
+
+  const CAMEO_TPL = [
+    '有一件东西你见过：{img}。不是在这一场里见到的，但梦不打算解释。',
+    '{img}又出现了。你没问它怎么来的，它也没问你最近怎么样，这样很好。',
+  ];
+
+  const LUCID_OK = [
+    '你说到做到。梦先愣了半秒，然后开始执行。',
+    '这一次，梦听了你的。',
+    '话音刚落，梦就开始重新排版。',
+  ];
+
+  const LUCID_COST = [
+    '代价是地面从现在起记仇，走直线会轻微打滑。',
+    '代价是所有颜色往左错了一寸——蓝色现在是凉的橙子。',
+    '代价是刚才跟你点头的人忘了你，礼貌得像初次见面。',
+    '代价是走廊从这一步开始变长，而你走的速度没变。',
+    '代价是时间打了个嗝，接下来两分钟属于上个月。',
+    '代价是梦的清晰度掉了百分之十。换来的那点自由，你算了算，还是值的。',
+  ];
+
+  const WAKE_SOUNDS = {
+    deep: ['手机屏幕自己亮了一下，又自己暗下去', '冰箱压缩机在黑夜里咔哒一声启动', '远处有一辆车碾过减速带，像谁翻了个身'],
+    dawn: ['楼下有鸟开始分第一批太阳', '水壶提前醒了，比所有人都有精神'],
+    morning: ['键盘声从走廊尽头传过来', '一杯水在桌上凉到正好喝的温度'],
+    noon: ['手机在口袋里震了一下，又安分了', '空调风吹在手背上，很守时'],
+    afternoon: ['空调风吹在手背上', '楼下有孩子放学，声音先是密的，然后散了'],
+    dusk: ['楼上的灯一盏一盏亮起来', '谁家开始做饭，香味先到'],
+    night: ['洗衣机进了脱水环节，像远方一阵短雨', '微信在桌面上亮了一下，又灭了'],
+  };
+
+  const ARTIFACTS = [
+    '一张车票，终点站的名字被水洇开了一半，剩下那一半，你认得。',
+    '一张便签，用你的笔迹写着"先住着"。可你今天没写过字。',
+    '一个玻璃瓶，拧开有半句报站声。',
+    '半页信，收件人那栏空着，但你知道是谁的。',
+    '一颗还温的星星。凉了就是普通的石头，所以你一直没放手。',
+    '一枚下过雨的贝壳，贴在耳边，是今天下午。',
+    '一格楼梯，从口袋里掏出来的时候，还有一点点回声。',
+    '一粒没发出去的站名，捏在手里会轻轻动。',
+  ];
+
+  const HOOKS = [
+    '{obj}那边还有半段路没走完，下次接着走。',
+    '{obj}欠你一句话，梦记着账。',
+    '下次去，{obj}应该还在原地。',
+  ];
+
+  const TITLES = ['{sA}与{obj}', '{sB}，和{obj}', '没起名的{sA}', '{sA}，{obj}'];
+
+  // ---------- 组装 ----------
+  function sentence(s) { return /[。！？…"」]$/.test(s) ? s : s + '。'; }
+
+  function buildDream({ seed, journal }) {
+    const seep = seepNow();
+    const mood = moodFor(seep, seed, journal);
+    const recentScenes = (journal && journal[0] && journal[0].scenes) || [];
+    const poolA = SCENES.filter((s) => !recentScenes.includes(s.short));
+    const sceneA = pick(poolA.length ? poolA : SCENES);
+    const sceneB = pick(SCENES.filter((s) => s.short !== sceneA.short));
+    const imp = pick(IMPOSSIBLES);
+    const character = pick(CHARACTERS);
+    const artifact = pick(ARTIFACTS);
+    const anchorExtra = pick(ANCHORS.filter((a) => !sceneA.anchors.includes(a)));
+    const wakeSound = pick(WAKE_SOUNDS[seep.bucket]);
+
+    // 旧梦意象回收（梦的余味）
+    let cameo = null;
+    const oldImgs = [];
+    (journal || []).slice(0, 3).forEach((r) => (r.imagery || []).forEach((i) => oldImgs.push(i)));
+    const fresh = oldImgs.filter((i) => i !== sceneA.img && i !== sceneB.img && i !== imp.img);
+    if (fresh.length && chance(0.85)) cameo = pick(fresh);
+
+    const beats = [];
+    // 拍一：现实渗入
+    beats.push(OPENERS[seep.bucket](seep));
+    // 拍二：入梦通道 + 抵达场景A
+    const lead = seed ? pick(SEED_LEADS).replace('{s}', seed) : '';
+    beats.push(sentence(lead + pick(THRESHOLDS)) + sceneA.text[0] + sentence(pick(sceneA.anchors)));
+    // 拍三：场景A深处 + 角色
+    const weave = seed ? ' ' + pick(SEED_WEAVES).replace('{s}', seed) : '';
+    beats.push(sceneA.text[1] + weave + sentence(character));
+    // 拍四：切场景B + 不可能事件
+    let b4 = sceneB.text[0] + imp.t;
+    if (cameo) b4 += ' ' + pick(CAMEO_TPL).replace('{img}', cameo);
+    b4 += sentence(anchorExtra);
+    beats.push(b4);
+    // 拍五（可选）：收束
+    if (chance(0.5)) beats.push(sceneB.text[1] + '你总觉得这场梦里还有半句话没说完。也许下次来，它会说完。');
+
+    const title = pick(TITLES).replace('{sA}', sceneA.short).replace('{sB}', sceneB.short).replace('{obj}', imp.obj);
+    const hook = pick(HOOKS).replace('{obj}', imp.obj);
+
+    return {
+      title, mood, beats, artifact, wakeSound, ai: false,
+      record: {
+        ts: Date.now(), title, mood, seed: seed || null,
+        scenes: [sceneA.short, sceneB.short],
+        imagery: [sceneA.img, imp.img, sceneB.img],
+        hook,
+      },
+      _ctx: { seep, unusedAnchors: ANCHORS.filter((a) => a !== anchorExtra), unusedImps: IMPOSSIBLES.filter((i) => i !== imp) },
+    };
+  }
+
+  // 用户转清醒后，梦接不上时用的备用拍
+  function spareBeat(dream) {
+    const c = dream._ctx;
+    const a = c.unusedAnchors.length ? c.unusedAnchors.splice(Math.floor(Math.random() * c.unusedAnchors.length), 1)[0] : pick(ANCHORS);
+    const imp = c.unusedImps.length ? c.unusedImps.splice(Math.floor(Math.random() * c.unusedImps.length), 1)[0] : pick(IMPOSSIBLES);
+    return '梦往前挪了一步，像给你腾地方。' + imp.t + sentence(a);
+  }
+
+  function lucidBeat() {
+    return pick(LUCID_OK) + pick(LUCID_COST);
+  }
+
+  return { seepNow, moodFor, PALETTES, buildDream, spareBeat, lucidBeat };
+})();
+
+if (typeof module !== 'undefined' && module.exports) module.exports = Engine;
+
+</script>
+  <script>
+/* 白日梦 App —— 界面状态机 / 背景 / 声音 / 档案 / 分享 */
+(() => {
+  'use strict';
+
+  const $ = (sel) => document.querySelector(sel);
+  const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+  // ---------- 存储 ----------
+  const J_KEY = 'daydream.journal.v1';
+  const AI_KEY = 'daydream.ai.v1';
+  const loadJ = () => { try { return JSON.parse(localStorage.getItem(J_KEY)) || []; } catch { return []; } };
+  const saveJ = (j) => { try { localStorage.setItem(J_KEY, JSON.stringify(j.slice(0, 50))); } catch {} };
+  const loadAI = () => { try { return JSON.parse(localStorage.getItem(AI_KEY)) || {}; } catch { return {}; } };
+  const saveAI = (c) => { try { localStorage.setItem(AI_KEY, JSON.stringify(c)); } catch {} };
+
+  let journal = loadJ();
+
+  // ---------- 背景画布 ----------
+  const bg = $('#bg');
+  const bctx = bg.getContext('2d');
+  let blobs = [], stars = [], W = 0, H = 0;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function sizeBg() {
+    W = bg.width = innerWidth * devicePixelRatio;
+    H = bg.height = innerHeight * devicePixelRatio;
+    bg.style.width = innerWidth + 'px'; bg.style.height = innerHeight + 'px';
+  }
+
+  function setPalette(palette) {
+    document.documentElement.style.setProperty('--bg', palette.bg);
+    if (palette.text) document.documentElement.style.setProperty('--text', palette.text);
+    blobs = palette.blobs.map((c, i) => ({
+      c, r: (0.35 + Math.random() * 0.3),
+      x: Math.random(), y: Math.random(),
+      vx: (Math.random() - 0.5) * 0.00035, vy: (Math.random() - 0.5) * 0.00035,
+      ph: i * 1.7,
+    }));
+    stars = Array.from({ length: 70 }, () => ({ x: Math.random(), y: Math.random(), s: Math.random() * 1.6 + 0.4, ph: Math.random() * 6.28 }));
+  }
+
+  let t0 = performance.now();
+  function drawBg(now) {
+    const t = (now - t0) / 1000;
+    bctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim() || '#12102e';
+    bctx.fillRect(0, 0, W, H);
+    bctx.globalCompositeOperation = 'lighter';
+    for (const b of blobs) {
+      const x = (b.x + t * b.vx) % 1.2 - 0.1, y = (b.y + t * b.vy) % 1.2 - 0.1;
+      const r = b.r * Math.max(W, H) * (1 + 0.08 * Math.sin(t * 0.3 + b.ph));
+      const g = bctx.createRadialGradient(x * W, y * H, 0, x * W, y * H, r);
+      g.addColorStop(0, hexA(b.c, 0.5)); g.addColorStop(1, hexA(b.c, 0));
+      bctx.fillStyle = g;
+      bctx.fillRect(0, 0, W, H);
+    }
+    bctx.globalCompositeOperation = 'source-over';
+    for (const s of stars) {
+      bctx.globalAlpha = 0.25 + 0.25 * Math.sin(t * 0.8 + s.ph);
+      bctx.fillStyle = '#ffffff';
+      bctx.beginPath(); bctx.arc(s.x * W, s.y * H, s.s * devicePixelRatio, 0, 6.29); bctx.fill();
+    }
+    bctx.globalAlpha = 1;
+    if (!reduced) requestAnimationFrame(drawBg);
+  }
+
+  function hexA(hex, a) {
+    const n = parseInt(hex.slice(1), 16);
+    return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`;
+  }
+
+  // ---------- 声音 ----------
+  const Snd = {
+    ctx: null, master: null, on: false,
+    ensure() {
+      if (this.ctx) return;
+      const AC = window.AudioContext || window.webkitAudioContext;
+      this.ctx = new AC();
+      this.master = this.ctx.createGain();
+      this.master.gain.value = 0;
+      this.master.connect(this.ctx.destination);
+      // 铺底双振荡器
+      const lp = this.ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 520; lp.Q.value = 0.4;
+      lp.connect(this.master);
+      [110, 164.8].forEach((f, i) => {
+        const o = this.ctx.createOscillator(); o.type = 'sine'; o.frequency.value = f; o.detune.value = i ? 6 : -4;
+        const g = this.ctx.createGain(); g.gain.value = 0.05;
+        o.connect(g); g.connect(lp); o.start();
+      });
+      // 慢速 LFO 让低通呼吸
+      const lfo = this.ctx.createOscillator(); lfo.frequency.value = 0.05;
+      const lg = this.ctx.createGain(); lg.gain.value = 180;
+      lfo.connect(lg); lg.connect(lp.frequency); lfo.start();
+      // 风声（带通噪声）
+      const len = this.ctx.sampleRate * 2;
+      const buf = this.ctx.createBuffer(1, len, this.ctx.sampleRate);
+      const ch = buf.getChannelData(0);
+      for (let i = 0; i < len; i++) ch[i] = Math.random() * 2 - 1;
+      const noise = this.ctx.createBufferSource(); noise.buffer = buf; noise.loop = true;
+      const bp = this.ctx.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 420; bp.Q.value = 0.6;
+      const ng = this.ctx.createGain(); ng.gain.value = 0.025;
+      noise.connect(bp); bp.connect(ng); ng.connect(this.master); noise.start();
+    },
+    toggle() {
+      this.ensure();
+      if (this.ctx.state === 'suspended') this.ctx.resume();
+      this.on = !this.on;
+      this.master.gain.linearRampToValueAtTime(this.on ? 0.55 : 0, this.ctx.currentTime + 0.8);
+      $('#sndBtn').classList.toggle('on', this.on);
+      return this.on;
+    },
+    chime() {
+      if (!this.ctx) return;
+      [660, 990].forEach((f, i) => {
+        const o = this.ctx.createOscillator(); o.type = 'sine'; o.frequency.value = f;
+        const g = this.ctx.createGain();
+        g.gain.setValueAtTime(0.001, this.ctx.currentTime);
+        g.gain.exponentialRampToValueAtTime(0.12 / (i + 1), this.ctx.currentTime + 0.03);
+        g.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 1.6);
+        o.connect(g); g.connect(this.ctx.destination);
+        o.start(); o.stop(this.ctx.currentTime + 1.7);
+      });
+    },
+  };
+
+  // ---------- 状态 ----------
+  const S = { dream: null, idx: 0, revealing: false, extrasLeft: 0, mode: 'home' };
+
+  function applyPalette(mood) {
+    const p = Engine.PALETTES[mood] || Engine.PALETTES['漂流'];
+    setPalette(p);
+  }
+
+  // ---------- 文本呈现 ----------
+  function showBeat(text, done) {
+    const box = $('#beatText');
+    box.innerHTML = '';
+    const parts = text.split(/(?<=[。！？])/).filter(s => s.trim());
+    parts.forEach((p, i) => {
+      const span = document.createElement('span');
+      span.className = 'line';
+      span.textContent = p;
+      span.style.transitionDelay = (i * 0.9) + 's';
+      box.appendChild(span);
+      requestAnimationFrame(() => requestAnimationFrame(() => span.classList.add('in')));
+    });
+    S.revealing = true;
+    const total = parts.length * 900 + 600;
+    setTimeout(() => { S.revealing = false; if (done) done(); }, reduced ? 50 : total);
+  }
+  function fastForward() {
+    document.querySelectorAll('#beatText .line').forEach(el => { el.style.transitionDelay = '0s'; el.classList.add('in'); });
+    S.revealing = false;
+  }
+
+  // ---------- 梦境流程 ----------
+  async function startDream() {
+    const seed = $('#seedInput').value.trim();
+    const cfg = loadAI();
+    let dream = null;
+    $('#home').hidden = true;
+    $('#dream').hidden = false;
+    $('#badge').textContent = '入梦中…';
+    if (cfg.on && cfg.key) {
+      try { dream = await aiDream(cfg, seed); } catch (e) { toast('AI 没接上，这梦由本地引擎做'); }
+    }
+    if (!dream) dream = Engine.buildDream({ seed, journal });
+    S.dream = dream; S.idx = -1; S.extrasLeft = 2;
+    S.mode = 'dream';
+    $('#badge').textContent = dream.ai ? 'AI 入梦 · ' + dream.mood : '本地引擎 · ' + dream.mood + '气压';
+    applyPalette(dream.mood);
+    advance();
+  }
+
+  function advance() {
+    if (S.revealing) { fastForward(); return; }
+    S.idx++;
+    const beats = S.dream.beats;
+    if (S.idx < beats.length) {
+      const last = S.idx === beats.length - 1 && S.extrasLeft <= 0;
+      $('#flowBtn').textContent = last ? '醒来' : '顺流';
+      showBeat(beats[S.idx]);
+    } else if (S.extrasLeft > 0) {
+      S.extrasLeft--;
+      $('#flowBtn').textContent = S.extrasLeft === 0 ? '醒来' : '顺流';
+      showBeat(Engine.spareBeat(S.dream));
+    } else {
+      wake();
+    }
+  }
+
+  function goLucid() {
+    $('#lucidRow').hidden = false;
+    $('#lucidInput').focus();
+  }
+
+  function submitLucid() {
+    const v = $('#lucidInput').value.trim();
+    if (!v) { $('#lucidInput').focus(); return; }
+    $('#lucidRow').hidden = true;
+    $('#lucidInput').value = '';
+    if (S.revealing) fastForward();
+    S.dream.beats.splice(S.idx + 1, 0, '你说：「' + v + '」——' + Engine.lucidBeat());
+    document.body.classList.add('jolt');
+    setTimeout(() => document.body.classList.remove('jolt'), 1600);
+    S.extrasLeft = Math.max(S.extrasLeft, 1);
+    advance();
+  }
+
+  function wake() {
+    S.mode = 'wake';
+    const d = S.dream;
+    journal.unshift(d.record);
+    saveJ(journal);
+    $('#wakeSoundLine').textContent = d.wakeSound + '。你睁开眼。';
+    $('#artifactText').textContent = '手心里多了一件东西——' + d.artifact;
+    $('#wakeTitle').textContent = d.title;
+    $('#wake').hidden = false;
+    $('#dream').hidden = true;
+    Snd.chime();
+  }
+
+  function again() {
+    $('#wake').hidden = true;
+    $('#home').hidden = false;
+    S.mode = 'home';
+    S.dream = null;
+    renderHomeHint();
+  }
+
+  // ---------- AI 模式（可选增强） ----------
+  const AI_PROMPT = `你是"白日梦引擎"，把用户放进一场梦里，不是讲一个梦。规则：
+- 第二人称、现在时。
+- 3～4拍，每拍100～200字，拍与拍之间直接切场景，不解释转场，梦从不解释自己。
+- 每拍至多一件不可能的事，且所有人当它很平常；梦不为自己的物理道歉。
+- 具象压倒抽象；允许一句话独占一段；通感至多一处。
+- 禁止总结主题、上价值、"这就像人生"。
+- 现实里的时间地点可以渗进梦里，但要用得轻。
+只输出JSON，不要输出其他文字：{"title":"八字以内的梦名","mood":"温柔|漂流|荒诞|循环|清醒","beats":["第1拍","第2拍","第3拍"],"artifact":"一件具体、没用、舍不得扔的醒物（一句话）","hook":"一句没讲完的钩子"}`;
+
+  async function aiDream(cfg, seed) {
+    const seep = Engine.seepNow();
+    const reality = `${seep.bucketText}${seep.h}点${seep.minText}分 星期${seep.week}`;
+    const recent = journal.slice(0, 3).map(r => ({ title: r.title, imagery: r.imagery, hook: r.hook }));
+    const user = JSON.stringify({ seed: seed || null, reality, recent });
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 60000);
+    try {
+      const res = await fetch((cfg.base || 'https://open.bigmodel.cn/api/paas/v4') + '/chat/completions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + cfg.key },
+        body: JSON.stringify({
+          model: cfg.model || 'glm-4-flash',
+          messages: [{ role: 'system', content: AI_PROMPT }, { role: 'user', content: user }],
+          temperature: 0.95,
+        }),
+        signal: ctrl.signal,
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      const txt = data.choices[0].message.content;
+      const m = txt.match(/\{[\s\S]*\}/);
+      const j = JSON.parse(m[0]);
+      if (!Array.isArray(j.beats) || j.beats.length < 2) throw new Error('bad format');
+      const mood = Engine.PALETTES[j.mood] ? j.mood : '漂流';
+      return {
+        title: j.title || '没起名的梦', mood,
+        beats: j.beats, artifact: j.artifact || '一件想不起来名目的东西，但你知道是它。',
+        wakeSound: pick(['手机在桌上震了一下', '远处的车声漫过来', '风扇转了一格']),
+        ai: true,
+        record: { ts: Date.now(), title: j.title || '没起名的梦', mood, seed: seed || null, scenes: [], imagery: j.hook ? [j.hook] : [], hook: j.hook || '' },
+        _ctx: { seep, unusedAnchors: [], unusedImps: [] },
+      };
+    } finally { clearTimeout(timer); }
+  }
+
+  // ---------- 档案 ----------
+  function renderJournal() {
+    const list = $('#journalList');
+    if (!journal.length) {
+      list.innerHTML = '<p class="empty">档案是空的。第一场梦还没发生。</p>';
+      return;
+    }
+    list.innerHTML = journal.map((r) => `
+      <div class="j-item">
+        <div class="j-title">${esc(r.title)}<span class="j-mood">${esc(r.mood)}</span></div>
+        <div class="j-meta">${new Date(r.ts).toLocaleString('zh-CN', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', weekday: 'short' })}${r.seed ? ' · 种子「' + esc(r.seed) + '」' : ''}</div>
+        ${(r.imagery || []).filter(Boolean).map(i => `<span class="chip">${esc(i)}</span>`).join('')}
+        ${r.hook ? `<div class="j-hook">钩子：${esc(r.hook)}</div>` : ''}
+      </div>`).join('');
+  }
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  }
+
+  // ---------- 分享卡片 ----------
+  function shareCard() {
+    const d = S.dream;
+    const p = Engine.PALETTES[d.mood] || Engine.PALETTES['漂流'];
+    const cv = document.createElement('canvas');
+    cv.width = 1080; cv.height = 1440;
+    const c = cv.getContext('2d');
+    const g = c.createLinearGradient(0, 0, 1080, 1440);
+    g.addColorStop(0, p.bg); g.addColorStop(1, p.blobs[0]);
+    c.fillStyle = g; c.fillRect(0, 0, 1080, 1440);
+    [[720, 380, 420, p.blobs[1]], [240, 980, 480, p.blobs[2]]].forEach(([x, y, r, col]) => {
+      const rg = c.createRadialGradient(x, y, 0, x, y, r);
+      rg.addColorStop(0, hexA(col, 0.55)); rg.addColorStop(1, hexA(col, 0));
+      c.fillStyle = rg; c.fillRect(0, 0, 1080, 1440);
+    });
+    c.fillStyle = 'rgba(255,255,255,0.06)';
+    roundRect(c, 90, 320, 900, 800, 36); c.fill();
+    c.fillStyle = p.text || '#fff';
+    c.textAlign = 'left';
+    c.font = '600 84px "Songti SC","Noto Serif SC",serif';
+    c.fillText(d.title, 140, 480);
+    c.font = '40px "Songti SC","Noto Serif SC",serif';
+    const body = firstSentences(d.beats[1] || d.beats[0], 90);
+    wrapText(c, body, 140, 590, 800, 68);
+    c.font = '44px "Songti SC","Noto Serif SC",serif';
+    c.fillStyle = hexA(p.blobs[1] || '#c98a6b', 1);
+    wrapText(c, '醒物：' + d.artifact, 140, 1010, 800, 64);
+    c.fillStyle = 'rgba(255,255,255,0.55)';
+    c.font = '32px sans-serif';
+    const dt = new Date();
+    c.fillText(`白日梦 · ${dt.getMonth() + 1}月${dt.getDate()}日 · 气压：${d.mood}`, 140, 1290);
+    const a = document.createElement('a');
+    a.download = `白日梦-${d.title}.png`;
+    a.href = cv.toDataURL('image/png');
+    a.click();
+  }
+
+  function firstSentences(s, max) {
+    const parts = s.split(/(?<=[。！？])/);
+    let out = '';
+    for (const p of parts) { if ((out + p).length > max) break; out += p; }
+    return out || s.slice(0, max);
+  }
+  function wrapText(c, text, x, y, w, lh) {
+    let line = '', yy = y;
+    for (const ch of text) {
+      if (c.measureText(line + ch).width > w) { c.fillText(line, x, yy); line = ch; yy += lh; }
+      else line += ch;
+    }
+    if (line) c.fillText(line, x, yy);
+  }
+  function roundRect(c, x, y, w, h, r) {
+    c.beginPath();
+    c.moveTo(x + r, y);
+    c.arcTo(x + w, y, x + w, y + h, r); c.arcTo(x + w, y + h, x, y + h, r);
+    c.arcTo(x, y + h, x, y, r); c.arcTo(x, y, x + w, y, r);
+    c.closePath();
+  }
+
+  // ---------- 杂项 ----------
+  function toast(msg) {
+    const t = $('#toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2600);
+  }
+
+  function renderHomeHint() {
+    const seep = Engine.seepNow();
+    const mood = Engine.moodFor(seep, null, journal);
+    const hint = `现在是星期${seep.week}${seep.bucketText}${seep.h}点${seep.minText}分——这场梦会是「${mood}」气压。`;
+    $('#seepHint').textContent = hint;
+    const last = journal[0];
+    $('#history').textContent = journal.length
+      ? (journal.length === 1 ? '这是你来过的第1次' : `你已经来过${journal.length}次了`) + (last ? `，上一场是「${last.title}」` : '')
+      : '什么都不填也行。梦自己会找路。';
+  }
+
+  // ---------- 绑定 ----------
+  function bind() {
+    $('#startBtn').addEventListener('click', startDream);
+    $('#seedInput').addEventListener('keydown', (e) => { if (e.key === 'Enter') startDream(); });
+    $('#flowBtn').addEventListener('click', advance);
+    $('#lucidBtn').addEventListener('click', goLucid);
+    $('#lucidGo').addEventListener('click', submitLucid);
+    $('#lucidInput').addEventListener('keydown', (e) => { if (e.key === 'Enter') submitLucid(); });
+    $('#wakeBtn').addEventListener('click', wake);
+    $('#againBtn').addEventListener('click', again);
+    $('#cardBtn').addEventListener('click', shareCard);
+    $('#sndBtn').addEventListener('click', () => Snd.toggle());
+    $('#journalBtn').addEventListener('click', () => { renderJournal(); $('#journal').classList.add('open'); });
+    $('#journalClose').addEventListener('click', () => $('#journal').classList.remove('open'));
+    $('#journalClear').addEventListener('click', () => {
+      if (confirm('把所有梦都还给夜？清空后，旧梦的角色不会再路过。')) {
+        journal = []; saveJ(journal); renderJournal(); renderHomeHint();
+      }
+    });
+    $('#gearBtn').addEventListener('click', () => { fillSettings(); $('#settings').classList.add('open'); });
+    $('#settingsClose').addEventListener('click', () => { persistSettings(); $('#settings').classList.remove('open'); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') { $('#journal').classList.remove('open'); $('#settings').classList.remove('open'); }
+      if ((e.key === ' ' || e.key === 'Enter') && S.mode === 'dream' && !$('#lucidRow').offsetParent && document.activeElement.tagName !== 'INPUT') {
+        e.preventDefault(); advance();
+      }
+    });
+  }
+
+  function fillSettings() {
+    const c = loadAI();
+    $('#aiOn').checked = !!c.on;
+    $('#aiKey').value = c.key || '';
+    $('#aiModel').value = c.model || '';
+    $('#aiBase').value = c.base || '';
+  }
+  function persistSettings() {
+    saveAI({ on: $('#aiOn').checked, key: $('#aiKey').value.trim(), model: $('#aiModel').value.trim(), base: $('#aiBase').value.trim() });
+  }
+
+  // ---------- 启动 ----------
+  sizeBg();
+  addEventListener('resize', () => { sizeBg(); if (reduced) requestAnimationFrame(drawBg); });
+  setPalette({ bg: '#141031', text: '#e9ecff', blobs: ['#4b5bab', '#7a6bb3', '#3b8686', '#6b4b8a'] });
+  requestAnimationFrame(drawBg);
+  bind();
+  renderHomeHint();
+
+  if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  }
+})();
+
+</script>
+</body>
+</html>
